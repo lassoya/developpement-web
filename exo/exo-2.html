@@ -1,12 +1,50 @@
 <html>
 <head>
-  <title>exo 2</title>
+    <title>Exo 2</title>
 </head>
+<style>
+    #userList {
+        width: 100%;
+    }
+
+    #userList th {
+        border: 1px solid #000;
+    }
+
+    td {
+        text-align: center;
+
+    }
+</style>
 <body>
-<h1>Exo 2</h1>
+<h1>Liste des utilisateurs</h1>
 
-<button>Visible</button>
-<button>Visible</button>
+<table id="userList">
+    <thead>
+    <tr>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Poids</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 
+
+<script>
+    const users = [
+        {firstname: 'Roger', lastname: 'Véro', weight: 70.5},
+        {firstname: 'David', lastname: 'andrew', weight: 70.5},
+        {firstname: 'Bernard', lastname: 'David', weight: 70.5},
+        {firstname: 'Hélène', lastname: 'Samuel', weight: 70.5},
+        {firstname: 'Mirabelle', lastname: 'andrew', weight: 70.5},
+        {firstname: 'Nicole', lastname: 'Nicole', weight: 70.5},
+        {firstname: 'Lola', lastname: 'andrew', weight: 70.5},
+        {firstname: 'Mélanie', lastname: 'Mélanie', weight: 70.5},
+        {firstname: 'Samuel', lastname: 'David', weight: 70.5},
+        {firstname: 'Véro', lastname: 'Bernard', weight: 70.5},
+    ];
+</script>
 </body>
 </html>

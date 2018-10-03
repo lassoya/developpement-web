@@ -3,7 +3,8 @@
 
 
 ## Partie Frontend
-
+ - [Initiation au javascript](documentation/pdf/init.pdf)
+ - [Manipulation du DOM](documentation/pdf/manipulation-dom.pdf)
 
 ## Partie Back
 
