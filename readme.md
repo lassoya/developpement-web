@@ -8,7 +8,7 @@
  - [Manipulation du DOM](documentation/pdf/manipulation-dom.pdf)
 
 ### Exercices
- - [Exercices 1](documentation/exo-1.md)
+ - [Exercices 1](documentation/exo/exo-1.md)
  
 ## Partie Back
 
