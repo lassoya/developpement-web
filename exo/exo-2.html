@@ -1,25 +1,25 @@
 <html>
 <head>
     <title>Exo 2</title>
+    <style>
+        #userList {
+            width: 100%;
+        }
+
+        #userList th {
+            border: 1px solid #000;
+        }
+
+        td {
+            text-align: center;
+
+        }
+    </style>
 </head>
-<style>
-    #userList {
-        width: 100%;
-    }
-
-    #userList th {
-        border: 1px solid #000;
-    }
-
-    td {
-        text-align: center;
-
-    }
-</style>
 <body>
 <h1>Liste des utilisateurs</h1>
 
-<table id="userList">
+<table id="userList" class="table">
     <thead>
     <tr>
         <th>Prénom</th>
@@ -31,7 +31,7 @@
     </tbody>
 </table>
 
-
+<script src="node_modules/jquery/dist/jquery.js"></script>
 <script>
     const users = [
         {firstname: 'Roger', lastname: 'Véro', weight: 70.5},

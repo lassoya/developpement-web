@@ -10,7 +10,7 @@
 <body>
 <h1>Exo 1</h1>
 
-<input type="button" value="click" onclick="modificationDom()">
+<input type="button" value="click" id="bouton">
 
 <table id="tab1" style="width: 100%;">
   <thead>
@@ -46,14 +46,18 @@
   Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
 </p>
 
-<div id="cube" style="background: #FF0000; width: 100px; height: 100px;">
+<div id="container-cube">
+  <div id="cube" style="background: #FF0000; width: 100px; height: 100px;">
+  </div>
 </div>
 
 <div id="containerForm" style="margin-top: 20px">
   <form>
     <div>
-      <label>Texte</label> <input type="text" placeholder="Hello" name="texte">
+      <label>Texte</label> <input type="text" placeholder="Hello" name="texte" id="texte">
     </div>
+    <div id="resultat"></div>
+
     <div>
       <label>Numéro</label> <input type="number" placeholder="0" name="number">
     </div>
@@ -65,10 +69,32 @@
   <li>Voiture</li>
   <li>Garage</li>
 </ul>
+<script src="node_modules/jquery/dist/jquery.js"></script>
 <script>
- function modificationDom(){
-  alert('Manipulation DOM'); 
- }
+    $(document).ready(function(){
+        $('#texte').focus();
+
+       // $('#texte').keyup(function(){
+        //   console.log('Up');
+        //});
+
+        $('#texte').keyup(function(){
+          //$('#resultat').empty().append($('#texte').val());
+         //  $('#resultat').text($('#texte').val());
+           $('#resultat').replaceWith('<div id="resultat">'+$('#texte').val()+'</div>');
+        });
+
+
+       // $('#list').append('<li>cabane</li><li>Jardin</li>');
+       // $('#list').append($('<li>').text('cabane')).append($('<li>').text('Jardin'));
+        $('#list').append([
+            $('<li>').text('cabane'),
+            $('<li>').text('Jardin')
+            ]
+        );
+
+
+    });
 
 </script>
 </body>
