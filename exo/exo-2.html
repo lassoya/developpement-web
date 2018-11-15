@@ -15,6 +15,7 @@
 
         }
     </style>
+<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
 <h1>Liste des utilisateurs</h1>
@@ -25,6 +26,7 @@ Salut Jérémy
         <th>Prénom</th>
         <th>Nom</th>
         <th>Poids</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -45,6 +47,19 @@ Salut Jérémy
         {firstname: 'Samuel', lastname: 'David', weight: 70.5},
         {firstname: 'Véro', lastname: 'Bernard', weight: 70.5},
     ];
+
+$('.btn-supp').click(function(){
+    alert('TEST');
+});
+    setTimeout(function(){
+
+        users.forEach(function(user){
+            $('#userList tbody').append('<tr><td>'+user.firstname+'</td><td>'+
+                user.lastname+'</td><td>'+user.weight+'</td>'+
+                '<td><button class="btn btn-danger btn-supp" >SUPPRIMER</button></td></tr>');
+        });
+    }, 3000);
+
 </script>
 </body>
 </html>
