@@ -30,6 +30,7 @@ Salut Jérémy
     </tr>
     </thead>
     <tbody>
+
     </tbody>
 </table>
 
@@ -48,17 +49,24 @@ Salut Jérémy
         {firstname: 'Véro', lastname: 'Bernard', weight: 70.5},
     ];
 
-$('.btn-supp').click(function(){
-    alert('TEST');
-});
-    setTimeout(function(){
 
-        users.forEach(function(user){
-            $('#userList tbody').append('<tr><td>'+user.firstname+'</td><td>'+
-                user.lastname+'</td><td>'+user.weight+'</td>'+
-                '<td><button class="btn btn-danger btn-supp" >SUPPRIMER</button></td></tr>');
-        });
-    }, 3000);
+function resfreshTable() {
+    $('#userList tbody').empty();
+    users.forEach(function(user, index){
+        $('#userList tbody').append('<tr><td>'+user.firstname+'</td><td>'+
+            user.lastname+'</td><td>'+user.weight+'</td>'+
+            '<td><button idx="' + index + '" class="btn btn-danger btn-supp" >SUPPRIMER</button></td></tr>');
+    });
+}
+
+resfreshTable();
+
+$('.btn-supp').click(function(){
+    const index = $(this).attr('idx');
+    users.splice(index, 1);
+    resfreshTable();
+});
+
 
 </script>
 </body>
