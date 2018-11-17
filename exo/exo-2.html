@@ -14,25 +14,53 @@
             text-align: center;
 
         }
+        #formEdit{
+            display: none;
+        }
     </style>
 <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
 <h1>Liste des utilisateurs</h1>
-Salut Jérémy
-<table id="userList" class="table">
-    <thead>
-    <tr>
-        <th>Prénom</th>
-        <th>Nom</th>
-        <th>Poids</th>
-        <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
 
-    </tbody>
-</table>
+<div class="row">
+    <div class="col">
+
+        <form id="formEdit">
+            <div class="form-group">
+                <label for="firstname">Nom</label>
+                <input type="texte" class="form-control" name="firstname" id="firstname" placeholder="Firstname">
+            </div>
+            <div class="form-group">
+                <label for="lastname">Prénom</label>
+                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="lastname">
+            </div>
+            <div class="form-group">
+                <label for="weight">Poids</label>
+                <input type="number" class="form-control" name="weight" id="weight" placeholder="weight">
+            </div>
+            <button type="button" onclick="ajoutOuModifer()" class="btn btn-danger">Annuler</button>
+            <button type="button" onclick="save()" class="btn btn-primary">Enregister</button>
+        </form>
+
+        <div id="container-list">
+            <button class="btn btn-primary" onclick="ajoutOuModifer()">Ajouter</button>
+            <br><br>
+            <table id="userList" class="table">
+                <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Poids</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <script src="node_modules/jquery/dist/jquery.js"></script>
 <script>
@@ -50,22 +78,44 @@ Salut Jérémy
     ];
 
 
+
+
 function resfreshTable() {
     $('#userList tbody').empty();
     users.forEach(function(user, index){
         $('#userList tbody').append('<tr><td>'+user.firstname+'</td><td>'+
             user.lastname+'</td><td>'+user.weight+'</td>'+
-            '<td><button idx="' + index + '" class="btn btn-danger btn-supp" >SUPPRIMER</button></td></tr>');
+            '<td><button onclick="remove(' + index + ')"  class="btn btn-danger btn-supp" >SUPPRIMER</button></td></tr>');
     });
+}
+
+function remove(index) {
+    users.splice(index, 1);
+    resfreshTable();
+}
+
+function ajoutOuModifer(){
+    $('#formEdit, #container-list').toggle();
+
 }
 
 resfreshTable();
 
+/*
+//supprimer un élément déjà présent dans le DOM ou ajouté dynamiquement
+$('#userList').on('click', '.btn-supp', function(){
+    const index = $(this).attr('idx');
+    users.splice(index, 1);
+    resfreshTable();
+});
+
+//supprimer un élément déjà présent dans le DOM
 $('.btn-supp').click(function(){
     const index = $(this).attr('idx');
     users.splice(index, 1);
     resfreshTable();
 });
+*/
 
 
 </script>
