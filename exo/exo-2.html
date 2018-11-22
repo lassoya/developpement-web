@@ -40,7 +40,7 @@
                 <input type="number" class="form-control" name="weight" id="weight" placeholder="weight">
             </div>
             <button type="button" onclick="ajoutOuModifer()" class="btn btn-danger">Annuler</button>
-            <button type="button" onclick="save()" class="btn btn-primary">Enregister</button>
+            <button type="submit" onclick="save(event)" class="btn btn-primary">Enregister</button>
         </form>
 
         <div id="container-list">
@@ -77,15 +77,13 @@
         {firstname: 'Véro', lastname: 'Bernard', weight: 70.5},
     ];
 
-
-
-
 function resfreshTable() {
     $('#userList tbody').empty();
     users.forEach(function(user, index){
         $('#userList tbody').append('<tr><td>'+user.firstname+'</td><td>'+
             user.lastname+'</td><td>'+user.weight+'</td>'+
-            '<td><button onclick="remove(' + index + ')"  class="btn btn-danger btn-supp" >SUPPRIMER</button></td></tr>');
+            '<td><button onclick="remove(' + index + ')"  class="btn btn-danger btn-supp" >SUPPRIMER</button>'+
+            '<button onclick="setForm(' + index + ')"  class="btn btn-primary btn-modif" >MODIFIER</button></td></tr>');
     });
 }
 
@@ -96,11 +94,27 @@ function remove(index) {
 
 function ajoutOuModifer(){
     $('#formEdit, #container-list').toggle();
-
 }
 
 resfreshTable();
 
+function save(event){
+    event.preventDefault();
+    //récupérer les informations du formulaire
+    const firstname = $('#firstname').val();
+    const lastname = $('#lastname').val();
+    const weight = $('#weight').val();
+
+    //créer l'objet utilisateur
+    const user = {firstname: firstname, lastname: lastname, weight: weight };
+    //ajouter l'objet utilisateur au tableau
+    users.push(user);
+
+    //vider le formulaire
+    $('#firstname, #lastname, #weight').val('');
+    ajoutOuModifer();
+    resfreshTable();
+}
 /*
 //supprimer un élément déjà présent dans le DOM ou ajouté dynamiquement
 $('#userList').on('click', '.btn-supp', function(){
@@ -115,6 +129,13 @@ $('.btn-supp').click(function(){
     users.splice(index, 1);
     resfreshTable();
 });
+
+
+
+$('#formAdd').serializeArray().reduce((a, b) => {
+a[b.name]= b.value;
+return a;
+}, {});
 */
 
 

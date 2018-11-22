@@ -3,6 +3,10 @@
     <title>Exo 3</title>
 </head>
 <style>
+    body#body{
+        height: 3000px;
+        background-color: #CCCCCC;
+    }
     #userList {
         width: 100%;
     }
@@ -11,41 +15,29 @@
         border: 1px solid #000;
     }
 </style>
-<body>
+<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+<body id="body">
 <button type="button" onclick="showAlert()">Alerte</button>
 
 
 <h1>Liste </h1>
-<table id="userList">
+<table id="userList" class="table">
     <thead>
     <tr>
         <th scope="col">#</th>
         <th scope="col">First</th>
         <th scope="col">Last</th>
-        <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <th scope="row">1</th>
+        <td>1</td>
         <td>Mark</td>
         <td>Otto</td>
-        <td><button  type="button">Supprimer</button></td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td><button  type="button">Supprimer</button></td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td><button  type="button">Supprimer</button></td>
     </tr>
     </tbody>
 </table>
+<script src="node_modules/jquery/dist/jquery.js"></script>
 <script>
     function showAlert() {
         alert('yooooooo');
