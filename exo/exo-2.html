@@ -39,12 +39,13 @@
                 <label for="weight">Poids</label>
                 <input type="number" class="form-control" name="weight" id="weight" placeholder="weight">
             </div>
-            <button type="button" onclick="ajoutOuModifer()" class="btn btn-danger">Annuler</button>
+            <input type="hidden" name="idx" id="idx" value="">
+            <button type="button" onclick="ajoutOuModifier()" class="btn btn-danger">Annuler</button>
             <button type="submit" onclick="save(event)" class="btn btn-primary">Enregister</button>
         </form>
 
         <div id="container-list">
-            <button class="btn btn-primary" onclick="ajoutOuModifer()">Ajouter</button>
+            <button class="btn btn-primary" onclick="ajoutOuModifier()">Ajouter</button>
             <br><br>
             <table id="userList" class="table">
                 <thead>
@@ -92,7 +93,7 @@ function remove(index) {
     resfreshTable();
 }
 
-function ajoutOuModifer(){
+function ajoutOuModifier(){
     $('#formEdit, #container-list').toggle();
 }
 
@@ -104,16 +105,33 @@ function save(event){
     const firstname = $('#firstname').val();
     const lastname = $('#lastname').val();
     const weight = $('#weight').val();
+    const index = $('#idx').val();
+    $('#idx').val('');
 
     //créer l'objet utilisateur
     const user = {firstname: firstname, lastname: lastname, weight: weight };
-    //ajouter l'objet utilisateur au tableau
-    users.push(user);
+
+    if(index != ''){
+        users[index] = user;
+    } else{
+        //ajouter l'objet utilisateur au tableau
+         users.push(user);
+    }
 
     //vider le formulaire
     $('#firstname, #lastname, #weight').val('');
-    ajoutOuModifer();
+    ajoutOuModifier();
     resfreshTable();
+}
+
+function setForm(index){
+    ajoutOuModifier();
+    const user = users[index];
+    $('#firstname').val(user.firstname);
+    $('#weight').val(user.weight);
+    $('#lastname').val(user.lastname);
+    $('#idx').val(index);
+
 }
 /*
 //supprimer un élément déjà présent dans le DOM ou ajouté dynamiquement

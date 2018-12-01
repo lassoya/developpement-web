@@ -1,0 +1,126 @@
+<html>
+<head>
+    <title>Exo 2</title>
+    <style>
+        #userList {
+            width: 100%;
+        }
+
+        #userList th {
+            border: 1px solid #000;
+        }
+
+        td {
+            text-align: center;
+
+        }
+
+        #formAdd {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Liste des utilisateurs</h1>
+    <div class="row">
+        <div class="col">
+
+            <form id="formAdd">
+                <div class="form-group">
+                    <label for="firstname">Nom</label>
+                    <input type="texte" class="form-control" name="firstname" id="firstname" placeholder="Firstname">
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Prénom</label>
+                    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="lastname">
+                </div>
+                <div class="form-group">
+                    <label for="weight">Poids</label>
+                    <input type="number" class="form-control" name="weight" id="weight" placeholder="weight">
+                </div>
+                <button type="button" onclick="addOrCancel()" class="btn btn-danger">Annuler</button>
+                <button type="button" onclick="save()" class="btn btn-primary">Enregister</button>
+            </form>
+
+            <div id="container-list">
+                <button class="btn btn-primary" onclick="addOrCancel()">Ajouter</button>
+                <br><br>
+                <table id="userList" class="table">
+                    <thead>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Poids</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script>
+    const users = [
+        {firstname: 'Roger', lastname: 'Véro', weight: 70.5},
+        {firstname: 'David', lastname: 'andrew', weight: 70.5},
+        {firstname: 'Bernard', lastname: 'David', weight: 70.5},
+        {firstname: 'Hélène', lastname: 'Samuel', weight: 70.5},
+        {firstname: 'Mirabelle', lastname: 'andrew', weight: 70.5},
+        {firstname: 'Nicole', lastname: 'Nicole', weight: 70.5},
+        {firstname: 'Lola', lastname: 'andrew', weight: 70.5},
+        {firstname: 'Mélanie', lastname: 'Mélanie', weight: 70.5},
+        {firstname: 'Samuel', lastname: 'David', weight: 70.5},
+        {firstname: 'Véro', lastname: 'Bernard', weight: 70.5},
+    ];
+
+    function save() {
+        const user = {
+            firstname: $('#formAdd #firstname').val(),
+            lastname: $('#formAdd #lastname').val(),
+            weight: $('#formAdd #weight').val(),
+        };
+
+        $('#formAdd input').val('');
+        $('#formAdd').hide();
+        $('#container-list').show();
+        users.push(user);
+        refreshList();
+    }
+
+    function addOrCancel() {
+        $('#formAdd, #container-list').toggle();
+        $('#formAdd input').val('');
+    }
+
+    function remove(index) {
+        users.splice(index, 1);
+
+        refreshList();
+    }
+
+    function refreshList() {
+        $('#userList tbody').empty();
+        users.forEach(function (user, key) {
+              $('#userList tbody').append('<tr><td>' + user.firstname + '</td><td>' + user.lastname + '</td><td>' + user.weight + '</td><td><button class="btn btn-danger" onclick="remove(' + key + ')">Supprimer</button></td></tr>')
+            //$('#userList tbody').append('<tr><td>' + user.firstname + '</td><td>' + user.lastname + '</td><td>' + user.weight + '</td><td><button class="btn btn-danger removeUser" >Supprimer</button></td></tr>')
+        })
+    }
+
+
+    //$('#container-list').on('click', '.removeUser', function () {
+    //    console.log('HELLOOOOO');
+    //});
+
+
+    refreshList();
+
+
+</script>
+</body>
+</html>

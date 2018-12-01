@@ -17,7 +17,9 @@
 </style>
 <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
 <body id="body">
-<button type="button" onclick="showAlert()">Alerte</button>
+<button type="button">Alerte</button>
+
+<button type="button" id="clone">Cloner</button>
 
 
 <h1>Liste </h1>
@@ -37,11 +39,67 @@
     </tr>
     </tbody>
 </table>
+<br>
+<br>
+<table id="tableBis" class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td id="handle1">@mdo</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td id="handle2">@fat</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td id="handle3" >@twitter</td>
+    </tr>
+    </tbody>
+</table>
 <script src="node_modules/jquery/dist/jquery.js"></script>
 <script>
-    function showAlert() {
-        alert('yooooooo');
-    }
+$(document).ready(function(){
+
+    //Exercice n°1
+    $('#clone').click(function () {
+        //METHODE 1
+        $('#userList tbody').append($('#userList tbody tr:first').clone());
+        //METHODE 2
+        //$('#userList tbody tr:first').clone().appendTo('#userList tbody');
+    });
+
+    //Exercice n°2
+    $('h1').click(function(){
+        alert('test');
+    });
+
+    //Exercice n°3
+    $('h1').mouseover(function(){
+        console.log('survol');
+    });
+
+    //Exercice n°4
+    $(window).scroll(function(){
+        console.log('scroll');
+    });
+
+});
+
 
 </script>
 
