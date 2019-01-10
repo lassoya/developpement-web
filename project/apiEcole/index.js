@@ -125,6 +125,11 @@ app.post('/users', function (req, res) {
     user.lastname = req.body.lastname || '';
     user.weight = parseFloat(req.body.weight || '');
 
+    user.id = users.reduce(function(acc, user){
+        return Math.max(acc, user.id)
+    }, 0)+1;
+
+
     //on ajoute l'utilisateur au tableau
     users.push(user);
 
