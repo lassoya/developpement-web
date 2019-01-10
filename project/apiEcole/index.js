@@ -121,9 +121,9 @@ app.post('/users/:id', function (req, res) {
 app.post('/users', function (req, res) {
     const user = {};
     //on met à jour les informations de l'utilisateur
-    user.firstname = req.body.firstname || user.firstname;
-    user.lastname = req.body.lastname || user.lastname;
-    user.weight = parseFloat(req.body.weight || user.weight);
+    user.firstname = req.body.firstname || '';
+    user.lastname = req.body.lastname || '';
+    user.weight = parseFloat(req.body.weight || '');
 
     //on ajoute l'utilisateur au tableau
     users.push(user);
