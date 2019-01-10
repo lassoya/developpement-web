@@ -65,18 +65,18 @@
 
 <script src="node_modules/jquery/dist/jquery.js"></script>
 <script>
-    const users = [
-        {firstname: 'Roger', lastname: 'Véro', weight: 70.5},
-        {firstname: 'David', lastname: 'andrew', weight: 70.5},
-        {firstname: 'Bernard', lastname: 'David', weight: 70.5},
-        {firstname: 'Hélène', lastname: 'Samuel', weight: 70.5},
-        {firstname: 'Mirabelle', lastname: 'andrew', weight: 70.5},
-        {firstname: 'Nicole', lastname: 'Nicole', weight: 70.5},
-        {firstname: 'Lola', lastname: 'andrew', weight: 70.5},
-        {firstname: 'Mélanie', lastname: 'Mélanie', weight: 70.5},
-        {firstname: 'Samuel', lastname: 'David', weight: 70.5},
-        {firstname: 'Véro', lastname: 'Bernard', weight: 70.5},
-    ];
+
+var users = [];
+
+
+$.ajax({
+    url: "http://localhost:3000/users",
+    type: 'GET'
+}).done(function(data) {
+    users = data;
+    resfreshTable();
+});
+
 
 function resfreshTable() {
     $('#userList tbody').empty();
@@ -88,16 +88,16 @@ function resfreshTable() {
     });
 }
 
-function remove(index) {
-    users.splice(index, 1);
-    resfreshTable();
+function remove(index, id) {
+   // id
+        //    users.splice(index, 1);
+         //resfreshTable();
 }
 
 function ajoutOuModifier(){
     $('#formEdit, #container-list').toggle();
 }
 
-resfreshTable();
 
 function save(event){
     event.preventDefault();
