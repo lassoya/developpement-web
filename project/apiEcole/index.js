@@ -115,6 +115,23 @@ app.post('/users/:id', function (req, res) {
     res.status(200).json(user);
 });
 
+/**
+ * Route permettant d'ajouter un nouvel utilisateur
+ */
+app.post('/users', function (req, res) {
+    const user = {};
+    //on met à jour les informations de l'utilisateur
+    user.firstname = req.body.firstname || user.firstname;
+    user.lastname = req.body.lastname || user.lastname;
+    user.weight = parseFloat(req.body.weight || user.weight);
+
+    //on ajoute l'utilisateur au tableau
+    users.push(user);
+
+    //on renvoie un code http 200 pour dire que tout s'est bien passé + l'objet utilisateur mis à jour
+    res.status(200).json(user);
+});
+
 
 app.get('/test', function (req, res) {
     const voiture = req.query.voiture || 'N/A';
