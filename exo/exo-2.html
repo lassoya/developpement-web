@@ -83,15 +83,19 @@ function resfreshTable() {
     users.forEach(function(user, index){
         $('#userList tbody').append('<tr><td>'+user.firstname+'</td><td>'+
             user.lastname+'</td><td>'+user.weight+'</td>'+
-            '<td><button onclick="remove(' + index + ')"  class="btn btn-danger btn-supp" >SUPPRIMER</button>'+
+            '<td><button onclick="remove(' + index + ','+ user.id +')"  class="btn btn-danger btn-supp" >SUPPRIMER</button>'+
             '<button onclick="setForm(' + index + ')"  class="btn btn-primary btn-modif" >MODIFIER</button></td></tr>');
     });
 }
 
 function remove(index, id) {
-   // id
-        //    users.splice(index, 1);
-         //resfreshTable();
+    $.ajax({
+        url: "http://localhost:3000/users/"+id,
+        type: 'DELETE'
+    }).done(function() {
+        users.splice(index, 1);
+        resfreshTable();
+    });
 }
 
 function ajoutOuModifier(){
