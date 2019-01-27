@@ -112,20 +112,40 @@ function save(event){
     const index = $('#idx').val();
     $('#idx').val('');
 
-    //créer l'objet utilisateur
-    const user = {firstname: firstname, lastname: lastname, weight: weight };
-
-    if(index != ''){
-        users[index] = user;
-    } else{
-        //ajouter l'objet utilisateur au tableau
-         users.push(user);
-    }
 
     //vider le formulaire
     $('#firstname, #lastname, #weight').val('');
-    ajoutOuModifier();
-    resfreshTable();
+
+    //créer l'objet utilisateur
+    const user = {firstname: firstname, lastname: lastname, weight: weight };
+
+    if(index != ''){//Modification
+        const idUser = users[index].id;
+
+        $.ajax({
+            url: "http://localhost:3000/users/"+idUser,
+            type: 'post',
+            data: user
+        }).done(function(_user) {
+            ajoutOuModifier();
+            //ajouter l'objet utilisateur au tableau
+            users[index] = _user;
+            resfreshTable();
+        });
+
+
+    } else{ //ajout
+        $.ajax({
+            url: "http://localhost:3000/users",
+            type: 'post',
+            data: user
+        }).done(function(_user) {
+            ajoutOuModifier();
+            //ajouter l'objet utilisateur au tableau
+            users.push(_user);
+            resfreshTable();
+        });
+    }
 }
 
 function setForm(index){
