@@ -43,6 +43,20 @@ app.post('/api/formations', function (req, res) {
     });
 });
 
+app.post('/api/formations/:id', function(req, res){
+    const id = req.params.id;
+    db.formation.findById(id).then(function(formation){
+        if(!formation){
+            return res.status(404).json({error: 'formation not found.'});
+        }
+        formation.label = req.body.label;
+        formation.description = req.body.description;
+        formation.save().then(function(formation){
+            return res.status(200).json(formation);
+        })
+    })
+});
+
 
 app.listen(4501, function () {
     console.log('application ready port : 4501');
