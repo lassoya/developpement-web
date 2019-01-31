@@ -39,7 +39,7 @@ app.post('/api/formations', function (req, res) {
 
     const formation = db.formation.build(data);
     formation.save().then(function (data) {
-        res.status(200).json(data);
+        res.status(201).json(data);
     });
 });
 
