@@ -1,24 +1,15 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const db = require('./models/index');
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 app.get('/', function (req, res) {
     res.status(200).json({ok: 'init application'});
 });
-
-
-/*
-app.get('/formations', async function (req, res) {
-    try{
-        const formations = await db.formation.findAll();
-        res.status(200).json(formations);
-    } catch(error){
-        console.log(error);
-        res.status(500).json({error: 'ddd'});
-    }
-});
-*/
 
 
 app.get('/api/formations', function (req, res) {
