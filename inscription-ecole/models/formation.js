@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   formation.associate = function(models) {
     // associations can be defined here
+      formation.belongsToMany(models.user, {through: 'UserForm'});
   };
   return formation;
 };
