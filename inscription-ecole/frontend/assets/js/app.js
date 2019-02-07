@@ -8,7 +8,8 @@ $(document).ready(function () {
 
     $(window).bind('hashchange', function () { //detect hash change
         var hash = window.location.hash.slice(1); //hash to string (= "myanchor")
-        console.log(hash);
+        $('.detail-page').hide();
+        $('#'+hash).show();
     });
 
 });
