@@ -4,7 +4,7 @@ const db = require('./models/index');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
@@ -43,20 +43,36 @@ app.post('/api/formations', function (req, res) {
     });
 });
 
-app.post('/api/formations/:id', function(req, res){
+app.post('/api/formations/:id', function (req, res) {
     const id = req.params.id;
-    db.formation.findById(id).then(function(formation){
-        if(!formation){
+    db.formation.findById(id).then(function (formation) {
+        if (!formation) {
             return res.status(404).json({error: 'formation not found.'});
         }
         formation.label = req.body.label;
         formation.description = req.body.description;
-        formation.save().then(function(formation){
+        formation.save().then(function (formation) {
             return res.status(200).json(formation);
         })
     })
 });
 
+app.delete('/api/formations/:id', function (req, res) {
+    const id = req.params.id;
+    db.formation.destroy({ where: { id: id }}).then(function(){
+        return res.status(204).json();
+    });
+    /*db.formation.findById(id).then(function (formation) {
+        if (!formation) {
+            return res.status(404).json({error: "formation not found"});
+        }
+
+        formation.destroy().then(function () {
+            return res.status(204).json();
+        });
+    });
+*/
+});
 
 app.listen(4501, function () {
     console.log('application ready port : 4501');

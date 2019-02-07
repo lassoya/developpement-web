@@ -1,6 +1,7 @@
 # Projet de développement web
 
-
+## Evaluation des acquis d'apprentissage
+ - [Projet gesion des contacts](documentation/acquis_apprentisage/Projet%20de%20développement%20Web.docx)
 
 ## Partie Frontend
 ### PDF
