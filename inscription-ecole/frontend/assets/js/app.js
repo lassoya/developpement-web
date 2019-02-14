@@ -12,9 +12,12 @@ $(document).ready(function () {
     }
 
     function initFormation() {
-
-
-
+        $.ajax({
+            url: '/api/formations',
+            type: 'GET'
+        }).done(function (formations) {
+            console.log(formations);
+        });
     }
 
 
