@@ -6,10 +6,14 @@ $(document).ready(function () {
     });
 
 
+    
+
     $(window).bind('hashchange', function () { //detect hash change
         var hash = window.location.hash.slice(1); //hash to string (= "myanchor")
         $('.detail-page').hide();
-        $('#'+hash).show();
+        if (hash) {
+            $('#' + hash).show();
+        }
     });
 
 });
