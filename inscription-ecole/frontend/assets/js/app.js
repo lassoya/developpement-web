@@ -1,4 +1,4 @@
-const formation = {}
+const formation = {};
 
 formation.supprimer= function (id) {
     console.log('yooo', id);
