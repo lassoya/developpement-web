@@ -2,12 +2,20 @@ const formation = {};
 
 formation.supprimer = function (id, index) {
     $.ajax({
-        url: '/api/formations/' + id,
+        url: `/api/formations/${id}`,
         method: 'DELETE'
     }).done(function (formations) {
         formation.data.splice(index, 1);
         formation.refreshTable();
     });
+};
+
+formation.edit = function (id, index) {
+  formation.toggle();
+};
+
+formation.toggle = function(){
+    $('#formation, #formation-edit').toggle();
 };
 
 formation.data = [];
@@ -32,7 +40,10 @@ formation.refreshTable = function () {
             '<td>' + formation.start_date + '</td>' +
             '<td>' + formation.end_date + '</td>' +
             '<td>' + formation.cost + '</td>' +
-            '<td><button onclick="formation.supprimer(' + formation.id + ', ' + index + ')" class="btn btn-danger">Supprimer</button></td>' +
+            '<td>' +
+            '<button onclick="formation.supprimer(' + formation.id + ', ' + index + ')" class="btn btn-danger">Supprimer</button>' +
+            '<button onclick="formation.edit(' + formation.id + ', ' + index + ')" class="btn btn-primary">Modifier</button>' +
+            '</td>' +
             '</tr>');
     });
 }

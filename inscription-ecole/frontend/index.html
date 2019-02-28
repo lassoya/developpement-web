@@ -5,7 +5,7 @@
     <title>Inscription ecole</title>
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <style>
-        .detail-page {
+        .detail-page, #formation-edit {
             display: none;
         }
     </style>
@@ -50,6 +50,31 @@
             </table>
         </div>
     </div>
+    <form id="formation-edit">
+        <div class="form-group">
+            <label for="label">Label</label>
+            <input type="text" class="form-control" id="label" name="label">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" name="description">
+        </div>
+        <div class="form-group">
+            <label for="start_date">Date de début</label>
+            <input type="date" class="form-control" id="start_date" name="start_date">
+        </div>
+        <div class="form-group">
+            <label for="end_date">Date de début</label>
+            <input type="date" class="form-control" id="end_date" name="end_date">
+        </div>
+        <div class="form-group">
+            <label for="cost">Prix</label>
+            <input type="number" class="form-control" id="cost" name="cost">
+        </div>
+
+        <button type="button" onclick="formation.toggle();"  class="btn btn-primary">Annuler</button>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
 
 </div>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
