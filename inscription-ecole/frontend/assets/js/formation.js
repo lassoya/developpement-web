@@ -12,7 +12,24 @@ formation.supprimer = function (id, index) {
 
 formation.edit = function (id, index) {
   formation.toggle();
+  const _formation = formation.data.find(function(form){
+     return form.id ===id;
+  });
+  if(_formation){
+    $('#label').val(_formation.label);
+    $('#description').val(_formation.description);
+    $('#start_date').val(_formation.start_date.substring(0, 10));
+    $('#end_date').val(_formation.end_date.substring(0, 10));
+  }
+    $('#cost').val(_formation.cost);
+
+
 };
+
+formation.cancelForm = function(){
+    this.toggle(); //this = object formation
+    $('#formation-edit input').val('');
+}
 
 formation.toggle = function(){
     $('#formation, #formation-edit').toggle();
