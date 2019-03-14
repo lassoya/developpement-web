@@ -53,6 +53,7 @@ app.post('/api/formations/:id', function (req, res) {
         }
         formation.label = req.body.label;
         formation.description = req.body.description;
+        formation.cost = req.body.cost;
         formation.save().then(function (formation) {
             return res.status(200).json(formation);
         })
