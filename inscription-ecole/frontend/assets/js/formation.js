@@ -52,7 +52,17 @@ formation.saveForm = function () {
             cost: cost
         }
     }).done(function (data) {
-        console.log(data);
+       const index = formation.data.findIndex(function(f){
+           return f.id === data.id;
+       });
+
+       if(-1 === index){
+            formation.data.push(data);
+       } else {
+            formation.data[index] = data;
+       }
+        formation.refreshTable();
+        formation.toggle();
     });
 };
 
