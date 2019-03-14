@@ -10,8 +10,11 @@ formation.supprimer = function (id, index) {
     });
 };
 
-formation.edit = function (id, index) {
+formation.edit = function (id) {
     formation.toggle();
+    if(!id){
+        return;
+    }
     const _formation = formation.data.find(function (form) {
         return form.id === id;
     });
@@ -23,8 +26,6 @@ formation.edit = function (id, index) {
         $('#end_date').val(_formation.end_date.substring(0, 10));
     }
     $('#cost').val(_formation.cost);
-
-
 };
 
 formation.cancelForm = function () {
@@ -41,10 +42,9 @@ formation.saveForm = function () {
     const cost = $('#cost').val();
 
     $.ajax({
-        url: '/api/formations/' + id,
+        url: '/api/formations' + ( id != null ? '/'+id  : ''),
         method: 'post',
         data: {
-            id: id,
             label: label,
             description: description,
             start_date: start_date,
